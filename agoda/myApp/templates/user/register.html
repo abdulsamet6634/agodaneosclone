@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<style>
+    .card {
+      background-color: #fff;
+      border-radius: 3px;
+      padding: 20px;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+    }
+    
+    .form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .group {
+      position: relative;
+    }
+    
+    .form .group label {
+      font-size: 14px;
+      color: rgb(99, 102, 102);
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      background-color: #fff;
+      transition: all .3s ease;
+    }
+    
+    .form .group input,
+    .form .group textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      outline: 0;
+      width: 100%;
+      background-color: transparent;
+    }
+    
+    .form .group input:placeholder-shown+ label, .form .group textarea:placeholder-shown +label {
+      top: 10px;
+      background-color: transparent;
+    }
+    
+    .form .group input:focus,
+    .form .group textarea:focus {
+      border-color: #3366cc;
+    }
+    
+    .form .group input:focus+ label, .form .group textarea:focus +label {
+      top: -10px;
+      left: 10px;
+      background-color: #fff;
+      color: #3366cc;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .form .group textarea {
+      resize: none;
+      height: 100px;
+    }
+    
+    .form button {
+      background-color: #3366cc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .form button:hover {
+      background-color: #27408b;
+    }
+    
+    .material-checkbox{
+      cursor: pointer;
+    }
+    .material-checkbox:hover{
+      color: #27408b;
+    }
+  </style>
+{% endblock css %}
+{% block body %}
+    
+    
+      <div class="container d-flex justify-content-center">
+        <div class="card mt-5 pt-5 ">
+          <span class="title">Kayıt OL</span>
+          <form class="form form-register" method="POST">
+            {% csrf_token %}
+            <div class="group">
+            <input placeholder="‎"  name="name" type="text" required="">
+            <label for="name">Ad</label>
+            </div>
+            <div class="group">
+              <input placeholder="‎"  name="surname" type="text" required="">
+              <label for="surname">Soyad</label>
+              </div>
+              <div class="group">
+                <input placeholder="‎" name="email" type="text" required="">
+                <label for="email">Email</label>
+                </div>
+                <div class="group">
+                  <input placeholder="‎" name="phone" type="number" required="">
+                  <label for="email">Telefon NUmarası</label>
+                  </div>
+              <div class="group">
+                <input class="password1" placeholder="‎" name="password1" type="password" required="">
+                <label for="password1">Şifre</label>
+                </div>
+                <div class="group">
+                  <input  class="password2" placeholder="‎" name="password2" type="password" required="">
+                  <label for="password2">Şifre Tekrar</label>
+                  </div>
+
+                   {% for i in messages  %}
+                   <div class="alert alert-danger " role="alert">
+                    {{i}}
+                   </div>
+                   {% endfor %}
+                 
+                   <div class="alert alert-danger register-alert" role="alert">
+                   Şifreler Aynı Değil
+                  </div>
+               
+                 
+                  
+                  <label class="material-checkbox d-flex  mb-4">
+                    <input type="checkbox"  width="45px" >
+                      <p class=" m-0 ms-3  p-0"> Özel Agoda programları hakkındaki e-postaları almak istiyorum. Gizlilik Politikası'nda belirtildiği üzere daha sonra bu kararımdan vaz geçebilirim.</p>
+                   
+                  </label>                
+            <button   type="submit">Submit</button>
+            <hr>
+            <a class="btn btn-primary"   type="submit">Zaten bir hesabınız varmı giriş Yapın</a>
+          </form>
+        </div>
+      </div>
+{% endblock body %}
+{% block js %}
+
+{% endblock js %}
