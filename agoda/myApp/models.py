@@ -8,16 +8,18 @@ class Coupon(models.Model):
     titile=models.IntegerField(("İndirim Oranı giriniz"),null=True,blank=True)
 
 class City(models.Model):
-    cityname=models.CharField(("Şehir İsmi"), max_length=50,null=True,blank=True)
-    cityimage=models.ImageField(("Şehir Resmi"), upload_to=None, height_field=None, width_field=None, max_length=None)
-    content = RichTextField(null=True,blank=True)
+    cityname = models.CharField(("Şehir İsmi"), max_length=50, null=True, blank=True)
+    cityimage = models.ImageField(("Şehir Resmi"), upload_to="media/none",  max_length=None)
+    content = RichTextField(null=True, blank=True)
+
     def __str__(self):
         return self.cityname
 
 
+
 class hotel(models.Model):
     city=models.ForeignKey(City, verbose_name=("Şehir"), on_delete=models.CASCADE,null=True,blank=True)
-    mainimg=models.ImageField(("Anaresim"),upload_to="Anaresim",  max_length=None, blank=True,null=False )
+    mainimg=models.ImageField(("Anaresim"),upload_to="media/Anaresim",  max_length=None, blank=True,null=False )
     hotelname=models.CharField(("Otel adı"), max_length=50,null=True,blank=True)
     hoteltitle=models.TextField(("Otel başlık"),max_length=500,null=True,blank=True)
     hotellocation=models.CharField(("Otel adresi"), max_length=50,null=True,blank=True)
